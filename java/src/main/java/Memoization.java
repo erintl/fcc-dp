@@ -99,4 +99,44 @@ public class Memoization {
         memo.put(targetSum, shortestCombination);
         return shortestCombination;
     }
+
+    public static boolean canConstruct(String target, List<String> wordBank, Map<String, Boolean> memo) {
+        if (memo.containsKey(target)) {
+            return memo.get(target);
+        }
+        if (target.length() == 0) {
+            return true;
+        }
+        for (String word : wordBank) {
+            if (target.indexOf(word) == 0) {
+                String suffix = target.substring(word.length());
+                if (canConstruct(suffix, wordBank, memo)) {
+                    memo.put(target, true);
+                    return true;
+                }
+            }
+        }
+        memo.put(target, true);
+        return false;
+    }
+
+    public static int countConstruct(String target, List<String> wordBank, Map<String, Integer> memo) {
+        if (memo.containsKey(target)) {
+            return memo.get(target);
+        }
+        if (target.length() == 0) {
+            return 1;
+        }
+
+        int totalCount = 0;
+        for (String word : wordBank) {
+            if (target.indexOf(word) == 0) {
+            String suffix = target.substring(word.length());
+            int numWays = countConstruct(suffix, wordBank, memo);
+                totalCount += numWays;
+            }
+        }
+        memo.put(target, totalCount);
+        return totalCount;
+    }
 }

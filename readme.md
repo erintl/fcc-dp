@@ -74,7 +74,19 @@ n: number of array elements
 
 ## Can Construct
 
-m: target length
+m: target string length
+n: number of array elements
+
+- Brute force
+  - Time: `n^m * m`
+  - Space: `m^2`
+- Memoized
+  - Time: `n * m^2`
+  - Space: `m^2`
+
+## Count Construct
+
+m: target string length
 n: number of array elements
 
 - Brute force
