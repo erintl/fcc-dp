@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Memoization {
     public static long fib(long number, Map<Long, Long> memo) {
@@ -104,7 +106,7 @@ public class Memoization {
         if (memo.containsKey(target)) {
             return memo.get(target);
         }
-        if (target.length() == 0) {
+        if (target.equals("")) {
             return true;
         }
         for (String word : wordBank) {
@@ -124,7 +126,7 @@ public class Memoization {
         if (memo.containsKey(target)) {
             return memo.get(target);
         }
-        if (target.length() == 0) {
+        if (target.equals("")) {
             return 1;
         }
 
@@ -138,5 +140,32 @@ public class Memoization {
         }
         memo.put(target, totalCount);
         return totalCount;
+    }
+
+    public static List<List<String>> allConstruct(String target, List<String> wordBank, Map<String,
+                                                  List<List<String>>> memo) {
+        if (memo.containsKey(target)) {
+            return memo.get(target);
+        }
+        if (target.equals("")) {
+            List<List<String>> baseCase = new ArrayList<>();
+            baseCase.add(new ArrayList<>());
+            return baseCase;
+        }
+
+        List<List<String>> result = new ArrayList<>();
+        for (String word : wordBank) {
+            if (target.indexOf(word) == 0) {
+                String suffix = target.substring(word.length());
+                List<List<String>> suffixWays = allConstruct(suffix, wordBank, memo);
+                List<List<String>> targetWays = suffixWays
+                        .stream()
+                        .peek(way -> way.add(0, word))
+                        .collect(Collectors.toList());
+                result = Stream.concat(result.stream(), targetWays.stream()).collect(Collectors.toList());
+            }
+        }
+        memo.put(target, result);
+        return result;
     }
 }

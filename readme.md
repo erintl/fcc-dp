@@ -72,7 +72,7 @@ n: number of array elements
   - Time: `n * m^2`
   - Space: `m^2`
 
-## Can Construct
+### Can Construct
 
 m: target string length
 n: number of array elements
@@ -84,7 +84,7 @@ n: number of array elements
   - Time: `n * m^2`
   - Space: `m^2`
 
-## Count Construct
+### Count Construct
 
 m: target string length
 n: number of array elements
@@ -95,5 +95,17 @@ n: number of array elements
 - Memoized
   - Time: `n * m^2`
   - Space: `m^2`
+
+### All Construct
+
+m: target string length
+n: number of array elements
+
+- Brute force
+  - Time: `n^m `
+  - Space: `m`
+- Memoized
+  - Time: `n`
+  - Space: `m`
 
 ## Tabulation
