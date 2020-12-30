@@ -86,4 +86,57 @@ public class Tabulation {
         }
         return table[targetSum];
     }
+
+    public static boolean canConstruct(String target, String[] wordBank) {
+        boolean[] table = new boolean[target.length() + 1];
+        table[0] = true;
+
+        for (int i = 0; i < table.length; i++) {
+            if (table[i]) {
+                for (String word : wordBank) {
+                    if (i + word.length() < table.length) {
+                        if (word.equals(target.substring(i, i + word.length()))) {
+                            table[i + word.length()] = true;
+                        }
+                    }
+                }
+            }
+        }
+        return table[target.length()];
+    }
+
+    public static int countConstruct(String target, String[] wordBank) {
+        int[] table = new int[target.length() + 1];
+        table[0] = 1;
+
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] != 0) {
+                for (String word : wordBank) {
+                    if (i + word.length() < table.length) {
+                        if (word.equals(target.substring(i, i + word.length()))) {
+                            table[i + word.length()] += table[i];
+                        }
+                    }
+                }
+            }
+        }
+        return table[target.length()];
+    }
+
+    public static String[][] allConstruct(String target, String[] wordBank) {
+        String[][][] table = new String[target.length() + 1][][];
+        Arrays.fill(table, new String[0][]);
+        table[0] = new String[0][0];
+
+        for (int i = 0; i < table.length; i++) {
+            for (String word : wordBank) {
+                if (i + word.length() < table.length) {
+                    if (word.equals(target.substring(i, i + word.length()))) {
+                        System.out.println(Arrays.deepToString(table[i]));
+                    }
+                }
+            }
+        }
+        return table[target.length()];
+    }
 }

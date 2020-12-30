@@ -108,6 +108,9 @@ n: number of array elements
 - Memoized
   - Time: `n * m^2`
   - Space: `m^2`
+- Tabulation
+  - Time: `n * m^2`
+  - Space: `m^2`
 
 ## Count Construct
 
@@ -130,7 +133,10 @@ n: number of array elements
   - Time: `n^m`
   - Space: `m`
 - Memoized
-  - Time: `n`
+  - Time: `n^m`
   - Space: `m`
+- Table
+  - Time: `n^m`
+  - Space: `n^m`
 
 ## Tabulation

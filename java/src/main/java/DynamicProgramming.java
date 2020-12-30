@@ -2,9 +2,11 @@ import java.util.Arrays;
 
 public class DynamicProgramming {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(Tabulation.bestSum(7, new int[]{ 5, 3, 4, 7 })));
-        System.out.println(Arrays.toString(Tabulation.bestSum(8, new int[]{ 5, 3, 4, 7 })));
-        System.out.println(Arrays.toString(Tabulation.bestSum(8, new int[]{ 1, 4, 5 })));
-        System.out.println(Arrays.toString(Tabulation.bestSum(100, new int[]{ 1, 2, 5, 25 })));
+        System.out.println(Arrays.deepToString(Tabulation.allConstruct("purple",
+                new String[]{"purp", "p", "ur", "le", "purpl"})));
+//        System.out.println(Arrays.deepToString(Tabulation.allConstruct("abcdef",
+//                new String[]{"ab", "abc", "cd", "def", "abcd", "ef", "c"})));
+//        System.out.println(Arrays.deepToString(Tabulation.allConstruct("aaaaaaaaaaz",
+//                new String[]{"a", "aa", "aaa", "aaaa", "aaaaa"})));
     }
 }
